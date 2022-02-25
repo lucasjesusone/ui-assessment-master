@@ -1,11 +1,10 @@
-import './App.css';
-import NoteOverview from './pages/Note/note-overview'
-import Routes from './routes';
+// import './Styles.jsx';
+import AppRoutes from './routes';
 
 function App() {
 
   return (
-    <Routes />
+    <AppRoutes />
   );
 }
 

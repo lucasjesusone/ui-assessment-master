@@ -3,46 +3,86 @@ import React, { useState, useContext } from "react";
 
 import { AuthContext } from "../../contexts/auth";
 
-import "./signIn.css";
+import { Spinner, Input, Button } from "./../Components/Commom/Styles";
+import PageLayout from "./../Components/Commom/PageLayout";
+import PasswordInput from "./../Components/Commom/PasswordInput";
+import { useEffect } from "react";
+import { Link } from 'react-router-dom';
+import { Form } from './styles';
 
-export default function SignUp() {
-  const { authenticated, login} = useContext(AuthContext); 
-  
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
+let timeout;
+export default function SignIn() {
+  const { login } = useContext(AuthContext);
+  const [formFields, setFormFields] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const [disabledButton, setDisabledButton] = useState(true);
+
+  function handleInputChange(e) {
+    e.persist();
+    setFormFields((state) => ({ ...state, [e.target.name]: e.target.value }));
+    
+    if(setFormFields !== '')
+    setDisabledButton(false)
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    login(email, password)
+    setLoading(true);
+    login(formFields.email, formFields.password);
+    timeout = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
   };
 
+  // if(formFields.email === "") {
+  //     setLoading(true)
+  // }
+
+  useEffect(() => {
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
+  }, []);
+
   return (
-    <div id="login">
-      <h1>Login do sistema</h1>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="field">
-          <label htmlFor="email">Email</label>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            name="email"
-            id="email"
-          />
-        </div>
-        <div className="field">
-          <label htmlFor="password">Password</label>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            name="password"
-            id="password"
-          />
-        </div>
-        <div className="actions">
-          <button type="submit">LogIn</button>
-        </div>
-      </form>
-    </div>
+    <PageLayout>
+      <h1>Sign In</h1>
+      <Form onSubmit={handleSubmit}>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            <Input
+              name="email"
+              placeholder="Email"
+              onChange={handleInputChange}
+              type="text"
+              value={formFields.email}
+            />
+            <PasswordInput
+              name="password"
+              onChange={handleInputChange}
+              value={formFields.password}
+            />
+          </>
+        )}
+        <Button type="submit" disabled={loading, disabledButton}>
+          {loading ? "Loading..." : "Login"}
+        </Button>
+        {!loading && (
+          <>
+            <div className="alt-text">or</div>
+            <Link to="/signUp">
+              <Button secondary type="button">
+                Register
+              </Button>
+            </Link>
+          </>
+        )}
+      </Form>
+    </PageLayout>
   );
 }

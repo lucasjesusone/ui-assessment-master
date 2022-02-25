@@ -35,15 +35,16 @@ export const AuthProvider = ({children}) => {
         
 
         setUser(loggedUser);
-        navigate("/home")
+        navigate("/notes")
     };
+
 
     const logout = () => {
         localStorage.removeItem("user")
         localStorage.removeItem("token")
         api.defaults.headers.Authorization = null;
         setUser(null);
-        navigate("/login")
+        navigate("/signIn")
     }
     return(
     <AuthContext.Provider value={{authenticated: !!user,user,logout, loading,login}}>
