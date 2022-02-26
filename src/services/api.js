@@ -21,6 +21,17 @@ export const createNote = async (title, description) => {
     })
 }
 
+export const registerUser = async(email,username,fullname, password) => {
+    return api.post('http://localhost:8082/service/user/new', {
+        email,
+        username,
+        fullname,
+        password
+    }).catch(error => {
+        console.log(error)
+    })
+}
+
 
 export const edit = async (id) => {
     return api.put('http://localhost:8082/service/note/' + id, {

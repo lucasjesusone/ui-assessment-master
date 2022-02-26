@@ -21,12 +21,11 @@ export default function Nav() {
     event.preventDefault();
     logout();
   };
+
   return (
     <>
-      <div></div>
       <NavbarContainer extendNavbar={extendNavbar}>
         <NavbaInnerContainer>
-          {/* <div>Welcome back {{userAuthenticated}}</div> */}
           <LeftContainer>
             <NavbarLinkContainer>
               <NavBarLink to="/notes">Notes</NavBarLink>

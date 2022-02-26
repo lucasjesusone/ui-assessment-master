@@ -96,11 +96,11 @@ export const Table = styled.table`
 `;
 
 export const TableHead = styled.thead`
- // custom css goes here
+  // custom css goes here
 `;
 
 export const TableBody = styled.tbody`
- // custom css goes here
+  // custom css goes here
 `;
 
 export const TableHRow = styled.tr`
@@ -128,6 +128,7 @@ export const TableBRow = styled.tr`
 export const TableBData = styled.td`
   border-top: 1px solid #ddd;
   padding: 8px;
+ 
 `;
 
 export const MidTable = styled.div`
@@ -207,10 +208,9 @@ export const CancelButton = styled.button`
 `;
 
 export const DeleteButton = styled.button`
-  color: #000;
+  color: #fff;
   background: ${(props) =>
     props.primaryColor ? props.theme.secondary : props.theme.fourthColor};
-  width: 20%;
   height: 2rem;
   border: none;
   border-radius: 4px;

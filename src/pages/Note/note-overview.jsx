@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 import "./styles.jsx";
 
-import { getNotes, createNote, deleteNote } from "./../../../services/api";
+import { getNotes, createNote, deleteNote } from "../../services/api";
 import {
   RecentWrap,
   Header,
@@ -24,7 +24,7 @@ import {
   TableBody,
 } from "./styles";
 
-import Navbar from "./../../HomePage/HomePage";
+import Navbar from "../HomePage/HomePage";
 
 let timeout;
 export const NoteOverview = () => {
@@ -85,11 +85,10 @@ export const NoteOverview = () => {
     })();
   }, [notes]);
 
-  // const authenticatedUser = localStorage.getItem("name");
+  
   return (
     <>
       <Navbar />
-      {/* <Header>Welcome back {authenticatedUser}</Header> */}
       <RecentWrap>
         <Header>Latest Notes</Header>
         <Button onClick={toggleModal}>New Note</Button>
@@ -136,7 +135,7 @@ export const NoteOverview = () => {
                   <TableBData>{item.description}</TableBData>
                   <TableBData>{item.createdAt}</TableBData>
                   <TableBData>
-                    <Button>Edit Note</Button>
+                    {/* <Button>Edit Note</Button> */}
                     <DeleteButton onClick={() => handleDelete(item.noteId)}>
                       Delete Note
                     </DeleteButton>

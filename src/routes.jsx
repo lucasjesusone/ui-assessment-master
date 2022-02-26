@@ -2,9 +2,8 @@ import React, { useContext, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { AuthProvider, AuthContext } from "./contexts/auth";
-import { NoteOverview } from "./pages/Note/note-list/note-overview";
+import { NoteOverview } from "./pages/Note/note-overview";
 
-import Navbar from "./pages/HomePage/HomePage";
 import SignIn from "./pages/SignIn/signIn";
 import SignUp from "./pages/SignUp/signUp";
 import LightTheme from "./../src/Themes/Light";
