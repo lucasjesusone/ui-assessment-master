@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-import { api, createSession, registerUser } from "../services/api";
+import { api, createSession } from "../services/api";
 
 export const AuthContext = createContext();
 
@@ -35,12 +35,6 @@ export const AuthProvider = ({ children }) => {
     navigate("/notes");
   };
 
-  const newUser = async (email,username,fullname, password) => {
-    const response = await registerUser(email, username,fullname,password);
-    console.log(response)
-    navigate("/signIn")
-  };
-
 
   const logout = () => {
     localStorage.removeItem("user");
@@ -51,7 +45,7 @@ export const AuthProvider = ({ children }) => {
   };
   return (
     <AuthContext.Provider
-      value={{ authenticated: !!user, user, logout, loading, login, newUser }}
+      value={{ authenticated: !!user, user, logout, loading, login }}
     >
       {children}
     </AuthContext.Provider>

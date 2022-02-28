@@ -1,14 +1,10 @@
-import React, { useState, useContext } from "react";
-import { Navigate } from "react-router-dom";
-
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import { registerUser } from "../../services/api";
 import { Spinner, Input, Button } from "./../Components/Commom/Styles";
+
+import styled from "styled-components";
 import PageLayout from "./../Components/Commom/PageLayout";
 import PasswordInput from "./../Components/Commom/PasswordInput";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from './../../contexts/auth';
 
 const Form = styled.form`
   width: 100%;
@@ -27,7 +23,6 @@ const Form = styled.form`
 let timeout;
 
 export default function SignUp() {
-  const { newUser } = useContext(AuthContext)
   const [formFields, setFormFields] = useState({ email: "", username: "",fullname: "", password: "" });
   const [loading, setLoading] = useState(false);
 
